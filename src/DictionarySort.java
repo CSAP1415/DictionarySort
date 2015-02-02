@@ -1,10 +1,10 @@
-
+import java.util.*;
+import java.io.*;
 public class DictionarySort
 {
   /**
  * stores an ordered lists of words for searching
  */
- 
  private static ArrayList<String> words;
  public static void main(String[] args) throws IOException {
  words = getWords();
@@ -32,20 +32,25 @@ public class DictionarySort
  * @param wordToFind - String to find in words
  * @return a SearchResult (index of item found or -1 if not found, number of iterations in search loop)
  */
-public static SearchResult sequentialSearch(String wordToFind) {
  //TODO
+ public static SearchResult sequentialSearch(String wordToFind)
+ {
  int count=0;
- SearchResult sr=new SearchResult(-1, words.size()-1);
- for(int i=0; i<words.size();i++)
+ for(int i=0; i<words.size(); i++)
+ {
+ if(words.get(i).equals(wordToFind))
  {
  count++;
- if(words.get(i).compareTo(wordToFind)==0)
+ SearchResult result=new SearchResult(i, count);
+ return result;
+ }
+ else
  {
- sr=new SearchResult(i, count);
- return sr;
+ count++;
  }
  }
- return sr;
+ SearchResult result=new SearchResult(-1, count);
+ return result;
 }
 /**
  * Implement a binary search to find wordToFind in the ArrayList words
@@ -89,24 +94,21 @@ public static SearchResult sequentialSearch(String wordToFind) {
  */
  public static void sortList(ArrayList<String> list) {
  //TODO
- for(int i=0; i<list.size();i++){
+  for(int i=0; i<list.size()-1; i++)
+ {
  int smallest=i;
  for(int j=i+1; j<list.size(); j++)
  {
- if(list.get(j).compareTo(list.get(smallest))<0) {
+ if(list.get(j).compareTo(list.get(smallest))<0)
+ {
  smallest=j;
  }
  }
-swap(words, i, smallest);
+ String store=list.get(i);
+ list.set(i, list.get(smallest));
+ list.set(smallest, store);
  }
- }
- public static void swap(ArrayList<String> words, int i, int j)
- {
- String temp=words.get(i);
- words.set(i, words.get(j));
- words.set(j, temp);
- }
-
+}
  /**
  * create an ArrayList<String> and populate it from text file
  *
@@ -123,3 +125,7 @@ swap(words, i, smallest);
  return result;
  }
 }
+
+
+
+

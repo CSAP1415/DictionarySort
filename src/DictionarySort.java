@@ -1,5 +1,4 @@
-import java.util.io.*;
-import java.util.*;
+
 public class DictionarySort
 {
   /**

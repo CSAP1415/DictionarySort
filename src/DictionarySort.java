@@ -5,6 +5,7 @@ public class DictionarySort
   /**
  * stores an ordered lists of words for searching
  */
+ 
  private static ArrayList<String> words;
  public static void main(String[] args) throws IOException {
  words = getWords();

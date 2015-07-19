@@ -1,6 +1,7 @@
 import java.util.*;
 import java.io.*;
 public class DictionarySort
+
 {
   /**
  * stores an ordered lists of words for searching
